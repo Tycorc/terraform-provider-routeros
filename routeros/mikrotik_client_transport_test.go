@@ -58,7 +58,7 @@ func newRestClient(ctx context.Context, hostUrl, user, pass string) *RestClient 
 	}
 }
 
-func TestClientTransport_SendRequest(t *testing.T) {
+func TestAccClientTransport_SendRequest(t *testing.T) {
 	testAccPreCheck(t)
 	ctx := context.Background()
 	host := reHost.FindStringSubmatch(os.Getenv("ROS_HOSTURL"))[1]

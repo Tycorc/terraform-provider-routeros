@@ -54,6 +54,10 @@ You are welcome!
 
 ### Testing
 
+Run offline unit tests with `make test`. Acceptance tests require `TF_ACC=1`
+and a disposable RouterOS instance configured through the `ROS_*` environment
+variables, as shown in `.github/workflows/module_testing.yml`.
+
 You can build the provider locally to test fixes by following these intructions:
 - Build and copy the provider where Terraform reads it
 ```
