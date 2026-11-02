@@ -60,6 +60,7 @@ var (
 )
 
 func Test_mikrotikResourceDataToTerraform(t *testing.T) {
+	setSerializationTestVersion(t)
 
 	testItem := MikrotikItem{".id": "*39", "string": "string12345", "float": "0.01", "int": "10", "bool": "true"}
 
@@ -82,6 +83,7 @@ func Test_mikrotikResourceDataToTerraform(t *testing.T) {
 }
 
 func Test_terraformResourceDataToMikrotik(t *testing.T) {
+	setSerializationTestVersion(t)
 
 	expected := MikrotikItem{"string": "string12345", "float": "0.01", "int": "10", "bool": "yes"}
 
@@ -100,6 +102,7 @@ func Test_terraformResourceDataToMikrotik(t *testing.T) {
 }
 
 func Test_mikrotikResourceDataToTerraformDatasource(t *testing.T) {
+	setSerializationTestVersion(t)
 	testItems := []MikrotikItem{
 		{"string": "string12345", "float": "0.01", "int": "10", "bool": "yes"},
 		{"string": "12345string", "float": "0.02", "int": "20", "bool": "no"},
@@ -123,6 +126,13 @@ func Test_mikrotikResourceDataToTerraformDatasource(t *testing.T) {
 			}
 		}
 	}
+}
+
+func setSerializationTestVersion(t *testing.T) {
+	t.Helper()
+	previous := RouterOSVersion
+	RouterOSVersion = "7.16"
+	t.Cleanup(func() { RouterOSVersion = previous })
 }
 
 func Test_loadTransformSet(t *testing.T) {
